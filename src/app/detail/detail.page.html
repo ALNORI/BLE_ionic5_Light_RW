@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{ peripheral.name || 'Device' }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="padding">
+  
+   <ion-item>
+      <ion-label>Power</ion-label>
+      <ion-toggle [(ngModel)]="power" (ionChange)="onPowerSwitchChange($event);"></ion-toggle>
+    </ion-item>
+  
+  
+  
+    <ion-item>
+  
+   <ion-badge item-end color="secondary">{{brightness}}</ion-badge>
+      <ion-range min="10" max="100" debounce="30" step="10"[(ngModel)]="brightness"  (ionChange)="setBrightness($event)">
+        <ion-icon range-left small name="sunny"></ion-icon>
+        <ion-icon range-right name="sunny"></ion-icon>
+      </ion-range>
+   </ion-item>
+  <!-- -->
+  </ion-content>
+<ion-content>
+
+    <mat-list>
+        <mat-list-item *ngFor="let device of devices">
+          <h3 matLine> {{device.name }} </h3>
+          <p matLine> {{device.id }} </p>
+          <p matLine class="demo-2"> {{device.rssi}} </p>
+        </mat-list-item>
+      </mat-list>
+</ion-content>
+<ion-content>
+    <button mat-raised-button color="accent"
+    (click)="goBack()">Back to scan</button>
+</ion-content>

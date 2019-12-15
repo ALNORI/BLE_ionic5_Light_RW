@@ -1,14 +1,53 @@
 <ion-header>
+  <!-- -->
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      BLE Button
     </ion-title>
+    <ion-button color="primary" style="float: right;" (click)="scan()">
+      Scan
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-toolbar>
+    <style type = 'text/css'>
+      .flex { display: flex; flex-direction: row; justify-content: center; width:auto; padding: 10px;}
+      .flex div { border: 20px ; padding: 10px; font-family: verdana; font-size: 2px; text-align: center;}
+  </style>
+  <div class = 'flex' style = ' margin: 20px'>
+      <div style = 'width: 50px; height: 30px; margin: 10px;'(click)="deviceSelected('lololo','lalalal')"><button mat-raised-button>Basic</button></div>
+      <div style = 'width: 50px; height: 30px; margin: 10px;'><button mat-raised-button>Basic</button></div>
+      <div style = 'width: 50px; height: 30px; margin: 10px;'><button mat-raised-button>Basic</button></div>
+      <div style = 'width: 30px; height: 30px; margin: 10px;'><button mat-raised-button>Basic</button></div>
   </div>
+  <div>
+
+</div>
+</ion-toolbar>
+
+<ion-content>
+    <mat-list>
+        <mat-list-item ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+          <h3 matLine> {{device.name }} </h3>
+          <p matLine> {{device.id }} </p>
+          <p matLine class="demo-2"> {{device.rssi}} </p>
+        </mat-list-item>
+      </mat-list>
 </ion-content>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+      <h2>{{ device.name || 'Unnamed' }}</h2>
+      <p>{{ device.id }}</p>
+      <p>RSSI: {{ device.rssi }}</p>
+    </button>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer><!-- -->
