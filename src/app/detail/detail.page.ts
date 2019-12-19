@@ -92,6 +92,19 @@ export class DetailPage implements OnInit {
     console.log('Sending: ' + data[0]);
 
   }
+  onPowerSwitchChangeII(state: number) {
+    console.log('onPowerSwitchChange');
+    // *********************************** */
+    const data = new Uint8Array(1);
+
+    // *********************************** */
+    data[0] = state;
+    console.log('this.data[0]: ' + data[0]);
+
+    this.ble.write(this.peripheral.id, LED_SERVICE, LED_CHARACERISTIC, data.buffer);
+    console.log('Sending: ' + data[0]);
+
+  }
 
   setBrightness(event) {
     console.log('this.brightness: ' + this.brightness);

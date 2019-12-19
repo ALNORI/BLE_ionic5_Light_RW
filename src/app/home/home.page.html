@@ -27,24 +27,22 @@
 </ion-toolbar>
 
 <ion-content>
-    <mat-list>
-        <mat-list-item ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
-          <h3 matLine> {{device.name }} </h3>
-          <p matLine> {{device.id }} </p>
-          <p matLine class="demo-2"> {{device.rssi}} </p>
-        </mat-list-item>
-      </mat-list>
-</ion-content>
-
-<ion-content>
   <ion-list>
-    <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+   
+    <div ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
       <h2>{{ device.name || 'Unnamed' }}</h2>
       <p>{{ device.id }}</p>
       <p>RSSI: {{ device.rssi }}</p>
-    </button>
+    </div>   
+
   </ion-list>
 </ion-content>
+
+<ion-content padding>
+  <ion-button color="primary" style="float: right;" (click)="vibrate()">
+    Vibrate ME
+  </ion-button>
+  </ion-content> 
 
 <ion-footer>
   <ion-toolbar>

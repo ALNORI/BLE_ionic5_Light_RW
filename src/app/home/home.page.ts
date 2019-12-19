@@ -4,6 +4,9 @@ import { NavController, ToastController } from '@ionic/angular';
 import { DetailPage } from '../detail/detail.page';
 import { Router, NavigationExtras} from '@angular/router';
 import {DataService} from '../data.service';
+import { Vibration } from '@ionic-native/vibration';
+import { ɵConsole } from '@angular/core';
+
 const navigationExtras: NavigationExtras = {
     state: {
       id: '',
@@ -17,6 +20,7 @@ const navigationExtras: NavigationExtras = {
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  [x: string]: any;
 
 
 
@@ -27,7 +31,9 @@ export class HomePage {
               private ble: BLE,
               public dataService: DataService,
               private ngZone: NgZone,
-              private router: Router) {
+              private router: Router,
+              public navCtrl: NavController ,
+              private vibration: Vibration) {
   }
 
   ionViewDidEnter() {
@@ -77,5 +83,12 @@ export class HomePage {
     this.dataService.setParamData(device);
     this.router.navigateByUrl('detail/device');
   }
+// ************************************************
+vibrate() {
+  this.vibration.vibrate(1000);
+  console.log('should vibrate know!');
+ 
+}
+
 
 }
